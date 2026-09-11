@@ -1273,15 +1273,12 @@ button {
   color: var(--text-body);
 }
 
-/* Modal Like Button & Counter (和風 短冊・落款調) */
+/* Modal Like Button (和風 短冊・落款調) */
 .modal-like-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.2rem;
   margin-bottom: 2.2rem;
-  padding: 1.1rem 1.5rem;
+  padding: 1rem 1.4rem;
   background: var(--bg-cream);
   border: 1px solid rgba(185, 151, 91, 0.25);
   border-left: 3px solid var(--gold-primary);
@@ -1340,32 +1337,6 @@ button {
   font-family: var(--font-serif);
   font-size: 0.76rem;
   font-weight: normal;
-}
-
-.modal-counter-status {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
-}
-
-.modal-like-hint {
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
-}
-
-.modal-counter-badge {
-  font-family: var(--font-serif);
-  font-size: 0.88rem;
-  color: var(--gold-dark);
-  font-weight: 600;
-}
-
-.modal-badge-val {
-  font-family: var(--font-en);
-  font-size: 1.1rem;
-  font-weight: 700;
 }
 
 @keyframes fanWave {

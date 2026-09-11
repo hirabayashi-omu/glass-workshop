@@ -287,8 +287,6 @@ const LikeManager = {
           const modalLabel = modalBtn.querySelector(".modal-like-label");
           if (modalLabel) modalLabel.textContent = isLiked ? "感銘を贈りました" : "作品に感銘を贈る";
         }
-        const badgeVal = document.querySelector(".modal-badge-val");
-        if (badgeVal) badgeVal.textContent = count;
       }
     }
 
