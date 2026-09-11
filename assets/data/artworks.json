@@ -1,0 +1,228 @@
+{
+  "workshop_title": "熱と物質のデザイン工房 ― 自分だけのガラスアート ―",
+  "concept": "ガラスは常温では固体ですが、高温になるとやわらかくなり、熱エネルギーによって自由に形を変えることができます。その変化の背後には、素材の物理的・化学的な加工原理が隠されています。参加者は実際にガラスを加熱し、引き伸ばし、曲げるなどの操作を通して、「熱」が「形」を生み出すプロセスを体験します。この活動を通じて、ガラスのものづくりを自らの手で学び、自分の発想を形にする創作の楽しさを実感することを目的としています。",
+  "staff": [
+    {
+      "role": "代表教員",
+      "name": "平林 大介",
+      "dept": "Mコース（化学工学）",
+      "desc": "Hカリキュラム1年生にガラス細工を指導。1年生実験実習のほか、応用専門分野物質プロセス領域において「物質プロセス基礎」「コスメティックス」「食品エンジニアリング」を担当。"
+    },
+    {
+      "role": "副代表教員",
+      "name": "楢崎 亮",
+      "dept": "LN系（数学）",
+      "desc": "幾何学的関心と立体の造形技術に関心を持ったのがきっかけ。火炎によるガラスの変形と造形プロセスを、立体の連続変化や数学的トポロジー（位相幾何学）の観点と結びつけて探究。"
+    },
+    {
+      "role": "技術・制作支援",
+      "name": "北峯 香澄",
+      "dept": "工房ファシリテーション支援",
+      "desc": "ガラス材料・バーナー設備や安全保護具の管理、環境整備、受講生一人ひとりの表現意図を汲み取ったきめ細やかな助言と円滑な実習運営をサポート。"
+    }
+  ],
+  "schedule": [
+    {
+      "day": "第1日（0.5日）",
+      "phase": "導入・安全",
+      "title": "安全事項の徹底と全体工程の確認",
+      "desc": "高熱バーナーの特性、保護具着用規程、非常時対応および6日間の制作工程のオリエンテーション。"
+    },
+    {
+      "day": "第2日（全日）",
+      "phase": "基礎加工",
+      "title": "ガラス管の基本加工（切断・加熱・接合）",
+      "desc": "火炎の温度帯の把握、ガラス管を溶かして均一に曲げる・引く・切断する基礎技術の習熟。"
+    },
+    {
+      "day": "第3日（全日）",
+      "phase": "伝統技法",
+      "title": "トンボ玉の製作と色彩装飾",
+      "desc": "離型剤を塗布した心棒への巻き取り成形、複数色のガラス棒を用いた文様（流線・点打）の探究。"
+    },
+    {
+      "day": "第4日（全日）",
+      "phase": "自由制作 Ⅰ",
+      "title": "オリジナル作品の試作と造形実験",
+      "desc": "各自が考案したデザイン図面をもとに、熱と重力のバランスを活かした独自の造形に着手。"
+    },
+    {
+      "day": "第5日（全日）",
+      "phase": "自由制作 Ⅱ",
+      "title": "本制作と細部ディテールの研磨・仕上げ",
+      "desc": "徐冷工程による内部応力の除去、異素材の組み合わせや微細な表面加工を丹念に追求。"
+    },
+    {
+      "day": "第6日（0.5日）",
+      "phase": "総括・講評",
+      "title": "作品発表会・成果報告展示",
+      "desc": "完成作品のコンセプト、熱と物質に対する洞察、制作プロセスでの発見を発表し相互講評。"
+    }
+  ],
+  "artworks": [
+    {
+      "id": 1,
+      "brand": "MELTICA",
+      "title": "ちいさき球体",
+      "subtitle": "なんかちいさくて丸いやつ",
+      "theme": "平和",
+      "category": "abstract",
+      "category_label": "抽象・造形",
+      "comment": "360度どの角度からも均整のとれた美しい球形を目指し、丹念に成形しました。青と白の色彩境界をじっくりと加熱して滑らかに融和させ、ガラスならではの柔らかな透明感と調和を際立たせています。",
+      "chars": 92,
+      "image": "assets/images/artworks/artwork_1.jpg"
+    },
+    {
+      "id": 2,
+      "brand": "Glasushi（ガラスシ）",
+      "title": "特上握りコース",
+      "subtitle": "日本の伝統食文化",
+      "theme": "和食",
+      "category": "figurative",
+      "category_label": "具象・食文化",
+      "comment": "錐を用いた細やかな凹凸加工でシャリの粒感を表現しました。重力と引き延ばしの技法でネギトロの立体感を出し、繊細な色調配合でイカやガリの質感を再現。日本の伝統食文化を硝子に宿した意欲作です。",
+      "chars": 95,
+      "image": "assets/images/artworks/artwork_2.jpg"
+    },
+    {
+      "id": 3,
+      "brand": "喫茶なかもず",
+      "title": "ふわふわたまごのオムライス",
+      "subtitle": "洋食プレートの情緒",
+      "theme": "洋食",
+      "category": "figurative",
+      "category_label": "具象・食文化",
+      "comment": "煤や黒ずみを徹底して抑える火炎調整により、ふんわりとした卵の質感を表現しました。鮮やかな朱赤のガラスで流麗なケチャップを描き、葉を象った器の上に盛り付けることで喫茶の情緒を演出しています。",
+      "chars": 95,
+      "image": "assets/images/artworks/artwork_3.jpg"
+    },
+    {
+      "id": 4,
+      "brand": "繩文珠寶",
+      "title": "逗號形珠子（勾玉）",
+      "subtitle": "古代の連環美",
+      "theme": "項鍊・歴史",
+      "category": "accessory",
+      "category_label": "身飾・装飾",
+      "comment": "古代の装飾美である勾玉をテーマに、長時間の試行錯誤を重ねて連ねました。一粒ごとに異なる表情や色彩の揺らぎを持たせつつ、全体として調和する連環の美を追求し、悠久の歴史情緒を表現しています。",
+      "chars": 94,
+      "image": "assets/images/artworks/artwork_4.jpg"
+    },
+    {
+      "id": 5,
+      "brand": "Solid",
+      "title": "lustrous",
+      "subtitle": "光を透かす星河の輝き",
+      "theme": "星河・光学",
+      "category": "abstract",
+      "category_label": "抽象・造形",
+      "comment": "色相環上で絶妙な距離にある色彩を融和させ、奥深い星河のきらめきを封じ込めました。背後から光が透過した瞬間に真の美しさが立ち現れるよう計算された構造で、幻想的な輝きを放ちます。",
+      "chars": 88,
+      "image": "assets/images/artworks/artwork_5.jpg"
+    },
+    {
+      "id": 6,
+      "brand": "silica",
+      "title": "海影（うみかげ）",
+      "subtitle": "水深に揺らめく光彩",
+      "theme": "海の光",
+      "category": "abstract",
+      "category_label": "抽象・造形",
+      "comment": "深みのある藍色と透き通る無色ガラス、そこに差す一条の黄色を重ね合わせ、揺らめく海中の情景を表現しました。ガラス特有の重層的な屈折と陰影が、神秘的な水中の奥行きを鮮やかに演出します。",
+      "chars": 92,
+      "image": "assets/images/artworks/artwork_6.jpg"
+    },
+    {
+      "id": 7,
+      "brand": "ジュエルフィッシュ",
+      "title": "金魚",
+      "subtitle": "泳ぐ生命のたおやかさ",
+      "theme": "海の生物",
+      "category": "figurative",
+      "category_label": "具象・生物",
+      "comment": "水中をたおやかに泳ぐ金魚の生命感を、繊細なガラスの曲線美で表現しました。特に尾びれや胸びれの柔らかな広がりと薄さにこだわり、光を孕んで生き生きと泳ぎ出すような立体造形に仕上げています。",
+      "chars": 93,
+      "image": "assets/images/artworks/artwork_7.jpg"
+    },
+    {
+      "id": 8,
+      "brand": "MelGlass",
+      "title": "空の雫",
+      "subtitle": "蒼天を閉じ込めた耳飾り",
+      "theme": "夏・天空",
+      "category": "accessory",
+      "category_label": "身飾・装飾",
+      "comment": "澄み渡る天空を凝縮したような青の透明感に、華やかなゴールド金具を組み合わせた耳飾りです。無駄を削ぎ落とした洗練のフォルムが光を捉え、日常から特別な装いまで涼やかに寄り添います。",
+      "chars": 90,
+      "image": "assets/images/artworks/artwork_8.jpg"
+    },
+    {
+      "id": 9,
+      "brand": "crystasea",
+      "title": "砂浜の青",
+      "subtitle": "渚の記憶と螺旋の造形",
+      "theme": "砂浜・波",
+      "category": "figurative",
+      "category_label": "具象・自然",
+      "comment": "渚に佇む巻貝の優美な螺旋構造に沿って、白と青の繊細なグラデーションを展開しました。波打ち際の記憶を呼び起こすような滑らかな色彩の移ろいと、自然の造形美を硝子の中に結晶化させています。",
+      "chars": 92,
+      "image": "assets/images/artworks/artwork_9.jpg"
+    },
+    {
+      "id": 10,
+      "brand": "Diglass",
+      "title": "土から飛び出したディグダ",
+      "subtitle": "大地と遊ぶ愛らしき造形",
+      "theme": "大地の造形",
+      "category": "figurative",
+      "category_label": "具象・キャラクター",
+      "comment": "大地からひょっこりと顔を覗かせる愛らしい佇まいを、温かみのある丸みと緻密な配置で表現しました。ミニマルな造形の中に的確なバランスで表情を宿し、思わず笑みがこぼれる温もりを放ちます。",
+      "chars": 92,
+      "image": "assets/images/artworks/artwork_10.jpg"
+    },
+    {
+      "id": 11,
+      "brand": "TerraGlass",
+      "title": "地球の息吹",
+      "subtitle": "微細な気泡が語る惑星の詩",
+      "theme": "海と惑星",
+      "category": "abstract",
+      "category_label": "抽象・造形",
+      "comment": "碧き地球を想わせる深い青と緑の層の中に、偶然生まれた微細な気泡を内包させました。光を受けて水底のようにきらめくその気泡が、生命の息吹と悠久の惑星の物語を静かに語りかけています。",
+      "chars": 91,
+      "image": "assets/images/artworks/artwork_11.jpg"
+    }
+  ],
+  "scenery": [
+    {
+      "id": 1,
+      "image": "assets/images/scenery/scenery_1.jpg",
+      "title": "火炎加工とガラス管の基本操作"
+    },
+    {
+      "id": 2,
+      "image": "assets/images/scenery/scenery_2.jpg",
+      "title": "ガラス管の均等加熱と引き伸ばし技法"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/scenery/scenery_3.jpg",
+      "title": "熱と重力が織りなす直角成形工程"
+    },
+    {
+      "id": 4,
+      "image": "assets/images/scenery/scenery_4.jpg",
+      "title": "トンボ玉の成形と徐冷工程"
+    },
+    {
+      "id": 5,
+      "image": "assets/images/scenery/scenery_5.jpg",
+      "title": "微細な気泡と色彩の調合実験"
+    },
+    {
+      "id": 6,
+      "image": "assets/images/scenery/scenery_6.jpeg",
+      "title": "安全ガイダンス風景（安全事項の徹底）"
+    }
+  ]
+}

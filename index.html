@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>熱と物質のデザイン工房 ― ガラス細工 Web展示ギャラリー</title>
+  <meta name="description" content="高温の火炎と物質の相互作用を探究し、自らの手で形を生み出す「熱と物質のデザイン工房」ガラス細工ワークショップ成果報告＆Web作品展示会。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Site Header (Ougiya Motif)
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#hero" class="header-logo">
+        <div class="logo-symbol"></div>
+        <div class="logo-text-group">
+          <span class="logo-main">熱と物質のデザイン工房</span>
+          <span class="logo-sub">大阪公立大学高専 総合課題実習１</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="#concept">理念・趣旨</a></li>
+          <li class="nav-item"><a href="#featured">厳選作品</a></li>
+          <li class="nav-item"><a href="#gallery">全作品展示</a></li>
+          <li class="nav-item"><a href="#schedule">制作工程</a></li>
+          <li class="nav-item"><a href="#scenery">工房風景</a></li>
+          <li class="nav-item"><a href="#staff">指導陣紹介</a></li>
+          <li class="nav-item">
+            <a href="#gallery" class="nav-cta-btn">
+              <span>作品を鑑賞</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="mobile-nav-toggle" aria-label="メニューを開閉">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         Hero Section (FV Slider & Japanese Vertical Typography)
+         ========================================================================== -->
+    <section id="hero" class="hero-section">
+      <div class="hero-slider-wrapper">
+        <div class="swiper hero-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide hero-slide">
+              <img src="assets/images/scenery/scenery_1.jpg" alt="火炎加工の風景" class="hero-slide-img">
+              <div class="hero-overlay"></div>
+            </div>
+            <div class="swiper-slide hero-slide">
+              <img src="assets/images/artworks/artwork_1.jpg" alt="代表作品" class="hero-slide-img">
+              <div class="hero-overlay"></div>
+            </div>
+            <div class="swiper-slide hero-slide">
+              <img src="assets/images/scenery/scenery_2.jpg" alt="ガラス引き伸ばし技法" class="hero-slide-img">
+              <div class="hero-overlay"></div>
+            </div>
+            <div class="swiper-slide hero-slide">
+              <img src="assets/images/artworks/artwork_6.jpg" alt="海の光彩" class="hero-slide-img">
+              <div class="hero-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-text-block">
+          <span class="hero-tag">大阪公立大学工業高等専門学校 総合課題実習１</span>
+          <h1 class="hero-main-title">
+            熱が形を<br>生み出す瞬間。
+          </h1>
+          <p class="hero-lead">
+            ガラスは常温では堅固な固体。しかし千度を超える熱エネルギーと対峙したとき、柔らかな流体へと変容し、作り手の呼吸と意図を宿します。<br>
+            物理と工藝の境界で生まれた、11の唯一無二なるガラス作品群。
+          </p>
+          <div class="hero-actions">
+            <a href="#gallery" class="btn-primary">
+              <span>展示作品を巡る</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="#concept" class="btn-secondary">
+              <span>工房趣旨を読む</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-vertical-banner">
+          <div class="vertical-phrase vertical-text">火炎が生み出す、かたちの軌跡。</div>
+          <div class="vertical-sub-phrase vertical-text">熱と物質のデザイン ― 自分だけのガラスアート</div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>SCROLL</span>
+        <div class="scroll-indicator-line"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Concept & Philosophy Section (Ougiya Story Aesthetic)
+         ========================================================================== -->
+    <section id="concept" class="concept-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-sub-en">Philosophy & Purpose</span>
+          <h2 class="section-title">ワークショップ趣旨と目的</h2>
+          <p class="section-desc">
+            「熱と物質のデザイン ― ガラス細工 ―」というテーマのもと、ガラスがどのようにして形をつくることができるのかを探究しました。
+          </p>
+        </div>
+
+        <div class="concept-grid">
+          <div class="concept-image-box">
+            <div class="concept-main-img-wrap">
+              <img src="assets/images/scenery/scenery_4.jpg" alt="ガイダンス・制作風景" class="concept-main-img">
+            </div>
+            <div class="concept-floating-seal">
+              <span>工藝探究</span>
+              <span class="en">CRAFT</span>
+            </div>
+          </div>
+
+          <div class="concept-text-box">
+            <h3 class="concept-h3">
+              素材の物理化学的原理を、<br>
+              自らの手先と五感で体感する。
+            </h3>
+            <p class="concept-body">
+              ガラスは常温では固体ですが、高温になるとやわらかくなり、熱エネルギーによって自由に形を変えることができます。その変化の背後には、素材の物理的・化学的な加工原理が隠されています。
+            </p>
+            <p class="concept-body">
+              参加者は実際にガラスを加熱し、引き伸ばし、曲げるなどの操作を通して、「熱」が「形」を生み出すプロセスを体験しました。この活動を通じて、ガラスのものづくりを自らの手で学び、自分の発想を形にする創作の楽しさを実感することを目的とします。
+            </p>
+
+            <div class="concept-features">
+              <div class="feature-item">
+                <span class="feature-num">01</span>
+                <div class="feature-info">
+                  <h4>熱流動の制御</h4>
+                  <p>重力・表面張力・温度勾配を操り、意図した曲面を創出する技法。</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-num">02</span>
+                <div class="feature-info">
+                  <h4>色彩と透過性</h4>
+                  <p>異種ガラス棒の融着によるグラデーションや気泡内包の表現探究。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Featured Works Section (Ougiya "お薦め" Carousel)
+         ========================================================================== -->
+    <section id="featured" class="featured-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-sub-en">Featured Collection</span>
+          <h2 class="section-title">注目の選定作品</h2>
+          <p class="section-desc">
+            独自の視点と卓越した熱制御によって生まれた、本展示を代表するハイライト作品をご覧ください。
+          </p>
+        </div>
+
+        <div class="featured-slider-wrap">
+          <div class="swiper featured-swiper">
+            <div class="swiper-wrapper">
+              <!-- Dynamically populated via JS -->
+            </div>
+            <div class="swiper-pagination featured-pagination"></div>
+          </div>
+          <button class="swiper-btn-prev featured-prev" aria-label="前へ">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="swiper-btn-next featured-next" aria-label="次へ">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Gallery Exhibition Section (Main 11 Artworks Display)
+         ========================================================================== -->
+    <section id="gallery" class="gallery-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-sub-en">Full Exhibition</span>
+          <h2 class="section-title">全作品 Web展示室</h2>
+          <p class="section-desc">
+            全11名の創作者による情熱の結晶。それぞれの作品コメントは、制作意図と技術的挑戦を約90文字の上品な文調に統一してご紹介いたします。
+          </p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="gallery-filter-wrap">
+          <button class="filter-btn active" data-filter="all">全作品（11点）</button>
+          <button class="filter-btn" data-filter="abstract">抽象・造形</button>
+          <button class="filter-btn" data-filter="figurative">具象・食文化・生物</button>
+          <button class="filter-btn" data-filter="accessory">身飾・装飾</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Schedule & Process Section (6 Days Timeline)
+         ========================================================================== -->
+    <section id="schedule" class="schedule-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-sub-en">Curriculum & Trajectory</span>
+          <h2 class="section-title">制作工程の軌跡</h2>
+          <p class="section-desc">
+            安全徹底のガイダンスから始まり、基礎技法の習得、自由制作、そして成果発表に至る6日間の集中プログラム。
+          </p>
+        </div>
+
+        <div class="schedule-timeline">
+          <div class="timeline-step">
+            <div class="step-time-badge">
+              <div class="step-day">第1日（0.5日）</div>
+              <div class="step-phase">Introduction & Safety</div>
+            </div>
+            <div class="step-node"><div class="step-node-inner"></div></div>
+            <div class="step-content">
+              <h3 class="step-title">安全事項とスケジュールの確認</h3>
+              <p class="step-desc">
+                高熱バーナーの特性理解、保護眼鏡・耐熱器具の着用規程の周知、緊急時対応プロトコルの確認、および全体スケジュールのオリエンテーションを実施。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-time-badge">
+              <div class="step-day">第2日（全日）</div>
+              <div class="step-phase">Basic Techniques</div>
+            </div>
+            <div class="step-node"><div class="step-node-inner"></div></div>
+            <div class="step-content">
+              <h3 class="step-title">ガラス管の加工技術習得</h3>
+              <p class="step-desc">
+                火炎の適切な温度領域のコントロール。ガラス管を回転させながら均一に加熱し、溶かして曲げる、引き伸ばす、管同士をつなぐ、切断する等の基礎加工を体得。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-time-badge">
+              <div class="step-day">第3日（全日）</div>
+              <div class="step-phase">Tombodama Craft</div>
+            </div>
+            <div class="step-node"><div class="step-node-inner"></div></div>
+            <div class="step-content">
+              <h3 class="step-title">トンボ玉の成形と装飾技法</h3>
+              <p class="step-desc">
+                心棒への均一な巻き取りによる球体形成。複数の色ガラス棒を用いたマーブル模様、点打ち、流線文様など、日本伝統の装飾技法を探究。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-time-badge">
+              <div class="step-day">第4日（全日）</div>
+              <div class="step-phase">Creative Studio Ⅰ</div>
+            </div>
+            <div class="step-node"><div class="step-node-inner"></div></div>
+            <div class="step-content">
+              <h3 class="step-title">自由制作 Ⅰ ― 構想の具現化</h3>
+              <p class="step-desc">
+                各自が考案したブランドコンセプトやテーマに基づき、オリジナル作品のプロトタイピングを開始。熱と重力のバランスを見極めながら試行錯誤を展開。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-time-badge">
+              <div class="step-day">第5日（全日）</div>
+              <div class="step-phase">Creative Studio Ⅱ</div>
+            </div>
+            <div class="step-node"><div class="step-node-inner"></div></div>
+            <div class="step-content">
+              <h3 class="step-title">自由制作 Ⅱ ― 本制作と仕上げ</h3>
+              <p class="step-desc">
+                試作の知見を反映した本番成形。微細な凹凸加工や異素材との組み合わせ、冷却工程（徐冷）による熱歪みの緩和など、細部の完成度を徹底追求。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-time-badge">
+              <div class="step-day">第6日（0.5日）</div>
+              <div class="step-phase">Final Presentation</div>
+            </div>
+            <div class="step-node"><div class="step-node-inner"></div></div>
+            <div class="step-content">
+              <h3 class="step-title">作品発表会と相互講評</h3>
+              <p class="step-desc">
+                完成した作品の展示、コンセプト・技法上の工夫・熱と物質に対する学びのプレゼンテーション。指導陣および受講生全員での相互講評を実施。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Scenery Showcase Section (Ougiya Architecture/Atmosphere)
+         ========================================================================== -->
+    <section id="scenery" class="scenery-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-sub-en">Workshop Atmosphere</span>
+          <h2 class="section-title">熱気薫る工房風景</h2>
+          <p class="section-desc">
+            火炎の音と熱気が満ちる実験工房。真剣な眼差しでガラスと対話し、素材の生命感を捉えた瞬間の記録。
+          </p>
+        </div>
+
+        <div class="scenery-slider-wrap">
+          <div class="swiper scenery-swiper">
+            <div class="swiper-wrapper">
+              <!-- Dynamically populated via JS -->
+            </div>
+            <div class="swiper-pagination scenery-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Mentors & Staff Section (Craftsmen Pride)
+         ========================================================================== -->
+    <section id="staff" class="staff-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-sub-en">Instructors & Mentors</span>
+          <h2 class="section-title">工房 指導陣紹介</h2>
+          <p class="section-desc">
+            化学工学（物質プロセス）、幾何学、そしてものづくり教育のスペシャリストが、安全と創造性を両立させた探究活動を伴走しました。
+          </p>
+        </div>
+
+        <div class="staff-grid">
+          <div class="staff-card">
+            <span class="staff-role-badge">代表教員</span>
+            <h3 class="staff-name">平林 大介</h3>
+            <p class="staff-dept">Mコース（化学工学）</p>
+            <p class="staff-desc">
+              Hカリキュラム1年生にガラス細工を指導。1年生実験実習のほか、応用専門分野物質プロセス領域において「物質プロセス基礎」「コスメティックス」「食品エンジニアリング」を担当。
+            </p>
+          </div>
+
+          <div class="staff-card">
+            <span class="staff-role-badge">副代表教員</span>
+            <h3 class="staff-name">楢崎 亮</h3>
+            <p class="staff-dept">LN系（数学）</p>
+            <p class="staff-desc">
+              幾何学的関心と立体の造形技術に関心を持ったのがきっかけ。火炎によるガラスの変形と造形プロセスを、立体の連続変化や数学的トポロジー（位相幾何学）の観点と結びつけて探究。
+            </p>
+          </div>
+
+          <div class="staff-card">
+            <span class="staff-role-badge">技術・制作支援</span>
+            <h3 class="staff-name">北峯 香澄</h3>
+            <p class="staff-dept">工房ファシリテーション支援</p>
+            <p class="staff-desc">
+              ガラス材料・バーナー設備や安全保護具の管理、環境整備、受講生一人ひとりの表現意図を汲み取ったきめ細やかな助言と円滑な実習運営をサポート。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Site Footer (Ougiya Formal Closing)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3 class="footer-brand-title">熱と物質のデザイン工房</h3>
+          <p class="footer-brand-desc">
+            大阪公立大学工業高等専門学校 総合課題実習１。火炎とガラスの物理的・化学的変容を探究し、素材の特性を自らの手で捉えて昇華させた学生たちの造形成果を記録・公開するWeb展示アーカイブです。
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>展示ナビゲーション</h4>
+          <ul class="footer-links">
+            <li><a href="#concept">ワークショップ理念</a></li>
+            <li><a href="#featured">厳選作品コレクション</a></li>
+            <li><a href="#gallery">全11作品展示室</a></li>
+            <li><a href="#schedule">6日間の制作工程</a></li>
+            <li><a href="#scenery">工房の熱気と風景</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>運営・実施体制</h4>
+          <ul class="footer-links">
+            <li><span style="color: var(--gold-light); font-weight: 500;">大阪公立大学 工業高等専門学校</span></li>
+            <li><span>総合課題実習１</span></li>
+            <li><span>熱と物質のデザイン工房 ガラス細工プロジェクトチーム</span></li>
+            <li><a href="#staff">指導教員・スタッフ紹介</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 大阪公立大学 工業高等専門学校 総合課題実習１ 熱と物質のデザイン工房. All Rights Reserved.</p>
+        <p class="font-en">Inspired by Nasu-Ougiya Design Philosophy</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Artwork Detail Modal
+       ========================================================================== -->
+  <div class="artwork-modal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <button class="modal-close-btn" aria-label="閉じる">&times;</button>
+      
+      <div class="modal-image-col">
+        <img src="" alt="" class="modal-artwork-img">
+      </div>
+
+      <div class="modal-info-col">
+        <span class="modal-brand"></span>
+        <h2 class="modal-title"></h2>
+        <p class="modal-subtitle"></p>
+        
+        <div class="modal-theme-row">
+          <span class="modal-theme-label">主題・テーマ</span>
+          <span class="modal-theme-val"></span>
+        </div>
+
+        <h4 class="modal-comment-heading">創作者コメント（統一推敲版）</h4>
+        <p class="modal-comment-text"></p>
+
+        <div class="modal-nav-row">
+          <button class="modal-nav-btn modal-prev-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            前の作品
+          </button>
+          <span class="char-count-badge modal-char-count"></span>
+          <button class="modal-nav-btn modal-next-btn">
+            次の作品
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CDN Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Application Logic -->
+  <script src="js/main.js"></script>
+</body>
+</html>
