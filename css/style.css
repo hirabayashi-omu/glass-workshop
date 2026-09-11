@@ -861,6 +861,7 @@ button {
   padding: 8rem 0;
   background: #ffffff;
   position: relative;
+  min-height: 820px;
 }
 
 /* Filter Controls */

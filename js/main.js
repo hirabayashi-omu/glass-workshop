@@ -349,13 +349,31 @@ function renderGalleryGrid(category = "all") {
     });
   });
 
-  // Re-trigger GSAP stagger on filter
+  // Re-trigger GSAP stagger on filter and refresh ScrollTrigger
   if (window.gsap) {
     gsap.fromTo(
       grid.querySelectorAll(".gallery-item"),
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out" }
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.5, 
+        stagger: 0.06, 
+        ease: "power2.out",
+        onComplete: () => {
+          if (typeof ScrollTrigger !== "undefined") {
+            ScrollTrigger.refresh();
+          }
+        }
+      }
     );
+  }
+
+  // Immediately refresh ScrollTrigger layout
+  if (typeof ScrollTrigger !== "undefined") {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 50);
   }
 }
 
@@ -508,7 +526,8 @@ function initGsapAnimations() {
       scrollTrigger: {
         trigger: header,
         start: "top 85%",
-        toggleActions: "play none none none"
+        once: true,
+        invalidateOnRefresh: true
       },
       opacity: 0,
       y: 40,
@@ -524,7 +543,9 @@ function initGsapAnimations() {
     gsap.from(conceptImg, {
       scrollTrigger: {
         trigger: ".concept-section",
-        start: "top 75%"
+        start: "top 75%",
+        once: true,
+        invalidateOnRefresh: true
       },
       opacity: 0,
       x: -50,
@@ -535,7 +556,9 @@ function initGsapAnimations() {
     gsap.from(conceptText, {
       scrollTrigger: {
         trigger: ".concept-section",
-        start: "top 75%"
+        start: "top 75%",
+        once: true,
+        invalidateOnRefresh: true
       },
       opacity: 0,
       x: 50,
@@ -550,7 +573,9 @@ function initGsapAnimations() {
     gsap.from(step, {
       scrollTrigger: {
         trigger: step,
-        start: "top 80%"
+        start: "top 85%",
+        once: true,
+        invalidateOnRefresh: true
       },
       opacity: 0,
       y: 40,
@@ -565,7 +590,9 @@ function initGsapAnimations() {
     gsap.from(card, {
       scrollTrigger: {
         trigger: ".staff-grid",
-        start: "top 80%"
+        start: "top 85%",
+        once: true,
+        invalidateOnRefresh: true
       },
       opacity: 0,
       y: 40,
