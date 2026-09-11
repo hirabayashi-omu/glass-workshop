@@ -165,15 +165,24 @@ const SCENERY_DATA = [
    Like / Heart System (LocalStorage Persistence & Sparkle Animation)
    ========================================================================== */
 const LikeManager = {
-  STORAGE_KEY_LIKES: "glass_workshop_likes",
-  STORAGE_KEY_USER: "glass_workshop_user_liked",
+  STORAGE_KEY_LIKES: "glass_workshop_likes_v5",
+  STORAGE_KEY_USER: "glass_workshop_user_liked_v5",
 
+  // Counter Reset: All items initialized to 0
   defaultLikes: {
-    1: 28, 2: 35, 3: 32, 4: 22, 5: 26, 6: 39, 7: 30, 8: 36, 9: 27, 10: 42, 11: 34
+    1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0
   },
 
   getLikesData() {
     try {
+      // Clear legacy storage keys if present
+      ["glass_workshop_likes", "glass_workshop_likes_v2", "glass_workshop_likes_v3", "glass_workshop_likes_v4"].forEach(k => {
+        localStorage.removeItem(k);
+      });
+      ["glass_workshop_user_liked", "glass_workshop_user_liked_v2", "glass_workshop_user_liked_v3", "glass_workshop_user_liked_v4"].forEach(k => {
+        localStorage.removeItem(k);
+      });
+
       const saved = localStorage.getItem(this.STORAGE_KEY_LIKES);
       return saved ? JSON.parse(saved) : { ...this.defaultLikes };
     } catch (e) {
@@ -193,6 +202,11 @@ const LikeManager = {
   getLikes(id) {
     const data = this.getLikesData();
     return data[id] !== undefined ? data[id] : (this.defaultLikes[id] || 0);
+  },
+
+  getTotalLikes() {
+    const data = this.getLikesData();
+    return Object.values(data).reduce((acc, curr) => acc + Number(curr || 0), 0);
   },
 
   isLiked(id) {
@@ -231,12 +245,12 @@ const LikeManager = {
 
   createParticles(element) {
     const rect = element.getBoundingClientRect();
-    const count = 7;
+    const count = 9;
     for (let i = 0; i < count; i++) {
       const p = document.createElement("div");
       p.className = "like-particle";
       const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5);
-      const distance = 25 + Math.random() * 25;
+      const distance = 30 + Math.random() * 35;
       const dx = Math.cos(angle) * distance;
       const dy = Math.sin(angle) * distance;
       p.style.setProperty("--dx", `${dx}px`);
@@ -244,34 +258,107 @@ const LikeManager = {
       p.style.left = `${rect.left + rect.width / 2 + window.scrollX}px`;
       p.style.top = `${rect.top + rect.height / 2 + window.scrollY}px`;
       document.body.appendChild(p);
-      setTimeout(() => p.remove(), 700);
+      setTimeout(() => p.remove(), 800);
     }
   },
 
-  updateAllUI(id) {
-    const count = this.getLikes(id);
-    const isLiked = this.isLiked(id);
+  updateAllUI(id = null) {
+    // If id provided, update specific artwork UI
+    if (id !== null) {
+      const count = this.getLikes(id);
+      const isLiked = this.isLiked(id);
 
-    // Update gallery and carousel like buttons
-    document.querySelectorAll(`.card-like-btn[data-id="${id}"]`).forEach(btn => {
-      btn.classList.toggle("liked", isLiked);
-      const countSpan = btn.querySelector(".card-like-count");
-      if (countSpan) countSpan.textContent = count;
-      const labelSpan = btn.querySelector(".card-like-label");
-      if (labelSpan) labelSpan.textContent = isLiked ? "感銘済" : "感銘";
-    });
+      // Update gallery and carousel like buttons across ALL slides (including cloned ones)
+      document.querySelectorAll(`.card-like-btn[data-id="${id}"]`).forEach(btn => {
+        btn.classList.toggle("liked", isLiked);
+        const countSpan = btn.querySelector(".card-like-count");
+        if (countSpan) countSpan.textContent = count;
+        const labelSpan = btn.querySelector(".card-like-label");
+        if (labelSpan) labelSpan.textContent = isLiked ? "感銘済" : "感銘";
+      });
 
-    // Update modal if currently opened
-    if (typeof currentModalId !== "undefined" && currentModalId === id) {
-      const modalBtn = document.querySelector(".modal-like-btn");
-      if (modalBtn) {
-        modalBtn.classList.toggle("liked", isLiked);
-        const modalCount = modalBtn.querySelector(".modal-like-count");
-        if (modalCount) modalCount.textContent = count;
-        const modalLabel = modalBtn.querySelector(".modal-like-label");
-        if (modalLabel) modalLabel.textContent = isLiked ? "感銘を贈りました" : "作品に感銘を贈る";
+      // Update modal if currently opened
+      if (typeof currentModalId !== "undefined" && currentModalId === id) {
+        const modalBtn = document.querySelector(".modal-like-btn");
+        if (modalBtn) {
+          modalBtn.classList.toggle("liked", isLiked);
+          const modalCount = modalBtn.querySelector(".modal-like-count");
+          if (modalCount) modalCount.textContent = count;
+          const modalLabel = modalBtn.querySelector(".modal-like-label");
+          if (modalLabel) modalLabel.textContent = isLiked ? "感銘を贈りました" : "作品に感銘を贈る";
+        }
+        const badgeVal = document.querySelector(".modal-badge-val");
+        if (badgeVal) badgeVal.textContent = count;
       }
     }
+
+    // Always update total counters across the page
+    const totalCount = this.getTotalLikes();
+    document.querySelectorAll(".total-likes-counter").forEach(counterEl => {
+      counterEl.textContent = totalCount;
+      counterEl.classList.remove("bump");
+      void counterEl.offsetWidth; // Trigger reflow for re-animating
+      counterEl.classList.add("bump");
+      setTimeout(() => counterEl.classList.remove("bump"), 350);
+    });
+  },
+
+  initGlobalListeners() {
+    // 1. Capture and stop pointer/touch events on like buttons to prevent Swiper from intercepting as slide swipe
+    const stopSwiperInterception = (e) => {
+      if (e.target.closest(".card-like-btn") || e.target.closest(".modal-like-btn")) {
+        e.stopPropagation();
+      }
+    };
+
+    ["pointerdown", "mousedown", "touchstart"].forEach(evt => {
+      document.addEventListener(evt, stopSwiperInterception, { capture: true, passive: true });
+    });
+
+    // 2. Global Event Delegation for Clicks (Works seamlessly on cloned slides & dynamic grids)
+    document.addEventListener("click", (e) => {
+      // Check if clicked inside card-like-btn
+      const cardBtn = e.target.closest(".card-like-btn");
+      if (cardBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = parseInt(cardBtn.getAttribute("data-id"), 10);
+        if (!isNaN(id)) {
+          this.toggleLike(id, cardBtn);
+        }
+        return;
+      }
+
+      // Check if clicked inside modal-like-btn
+      const modalBtn = e.target.closest(".modal-like-btn");
+      if (modalBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof currentModalId !== "undefined" && currentModalId) {
+          this.toggleLike(currentModalId, modalBtn);
+        }
+        return;
+      }
+
+      // Check if clicked on featured card to open modal
+      const featuredCard = e.target.closest(".featured-card");
+      if (featuredCard && !e.target.closest(".card-like-btn")) {
+        const id = parseInt(featuredCard.getAttribute("data-id"), 10);
+        if (!isNaN(id)) openModal(id);
+        return;
+      }
+
+      // Check if clicked on gallery item to open modal
+      const galleryItem = e.target.closest(".gallery-item");
+      if (galleryItem && !e.target.closest(".card-like-btn")) {
+        const id = parseInt(galleryItem.getAttribute("data-id"), 10);
+        if (!isNaN(id)) openModal(id);
+        return;
+      }
+    });
+
+    // Initial total count render
+    this.updateAllUI();
   }
 };
 
@@ -281,12 +368,14 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroSwiper();
   renderFeaturedSwiper();
   initFeaturedSwiper();
-  renderGalleryGrid("all");
-  initGalleryFilter();
+  renderGalleryGrid();
   renderScenerySwiper();
   initScenerySwiper();
   initModal();
   initGsapAnimations();
+  
+  // Initialize Global Like & Counter System
+  LikeManager.initGlobalListeners();
 });
 
 /* ==========================================================================
@@ -354,7 +443,6 @@ function renderFeaturedSwiper() {
   wrapper.innerHTML = featuredItems.map(item => `
     <div class="swiper-slide featured-card" data-id="${item.id}">
       <div class="featured-card-img-wrap">
-        <span class="card-category-badge">${item.categoryLabel}</span>
         <button class="card-like-btn ${LikeManager.isLiked(item.id) ? 'liked' : ''}" data-id="${item.id}" aria-label="感銘を贈る">
           <svg class="like-fan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M12 21L3.5 9.5C5.8 7 8.8 5.5 12 5.5C15.2 5.5 18.2 7 20.5 9.5L12 21Z" />
@@ -364,6 +452,7 @@ function renderFeaturedSwiper() {
           </svg>
           <span class="card-like-label">${LikeManager.isLiked(item.id) ? '感銘済' : '感銘'}</span>
           <span class="card-like-count">${LikeManager.getLikes(item.id)}</span>
+          <span class="card-like-unit">讃</span>
         </button>
         <img src="${item.image}" alt="${item.title}" class="featured-card-img" loading="lazy">
       </div>
@@ -383,23 +472,6 @@ function renderFeaturedSwiper() {
       </div>
     </div>
   `).join("");
-
-  // Attach click to open modal or like
-  wrapper.querySelectorAll(".featured-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const id = parseInt(card.getAttribute("data-id"), 10);
-      openModal(id);
-    });
-
-    const likeBtn = card.querySelector(".card-like-btn");
-    if (likeBtn) {
-      likeBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const id = parseInt(likeBtn.getAttribute("data-id"), 10);
-        LikeManager.toggleLike(id, likeBtn);
-      });
-    }
-  });
 }
 
 function initFeaturedSwiper() {
@@ -408,6 +480,9 @@ function initFeaturedSwiper() {
     spaceBetween: 24,
     speed: 800,
     loop: true,
+    preventClicks: false,
+    preventClicksPropagation: false,
+    touchStartPreventDefault: false,
     autoplay: {
       delay: 4500,
       disableOnInteraction: false
@@ -434,18 +509,14 @@ function initFeaturedSwiper() {
 }
 
 /* ==========================================================================
-   Gallery Exhibition Grid (Main 11 Artworks)
+   Gallery Exhibition Grid (All 11 Artworks)
    ========================================================================== */
-function renderGalleryGrid(category = "all") {
+function renderGalleryGrid() {
   const grid = document.querySelector(".gallery-grid");
   if (!grid) return;
 
-  const filtered = category === "all" 
-    ? ARTWORK_DATA 
-    : ARTWORK_DATA.filter(item => item.category === category);
-
-  grid.innerHTML = filtered.map(item => `
-    <article class="gallery-item" data-id="${item.id}" data-category="${item.category}">
+  grid.innerHTML = ARTWORK_DATA.map(item => `
+    <article class="gallery-item" data-id="${item.id}">
       <div class="gallery-img-container">
         <button class="card-like-btn ${LikeManager.isLiked(item.id) ? 'liked' : ''}" data-id="${item.id}" aria-label="感銘を贈る">
           <svg class="like-fan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -456,6 +527,7 @@ function renderGalleryGrid(category = "all") {
           </svg>
           <span class="card-like-label">${LikeManager.isLiked(item.id) ? '感銘済' : '感銘'}</span>
           <span class="card-like-count">${LikeManager.getLikes(item.id)}</span>
+          <span class="card-like-unit">讃</span>
         </button>
         <img src="${item.image}" alt="${item.title}" class="gallery-img" loading="lazy">
         <div class="gallery-img-overlay">
@@ -477,29 +549,11 @@ function renderGalleryGrid(category = "all") {
         <p class="gallery-card-theme">${item.theme}</p>
         <p class="gallery-card-desc">${item.comment}</p>
         <div class="gallery-card-meta">
-          <span>${item.categoryLabel}</span>
           <span class="char-count-badge">${item.chars}文字</span>
         </div>
       </div>
     </article>
   `).join("");
-
-  // Attach card click & like button click
-  grid.querySelectorAll(".gallery-item").forEach(card => {
-    card.addEventListener("click", () => {
-      const id = parseInt(card.getAttribute("data-id"), 10);
-      openModal(id);
-    });
-
-    const likeBtn = card.querySelector(".card-like-btn");
-    if (likeBtn) {
-      likeBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const id = parseInt(likeBtn.getAttribute("data-id"), 10);
-        LikeManager.toggleLike(id, likeBtn);
-      });
-    }
-  });
 
   // Re-trigger GSAP stagger on filter and refresh ScrollTrigger
   if (window.gsap) {
@@ -527,18 +581,6 @@ function renderGalleryGrid(category = "all") {
       ScrollTrigger.refresh();
     }, 50);
   }
-}
-
-function initGalleryFilter() {
-  const buttons = document.querySelectorAll(".filter-btn");
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const category = btn.getAttribute("data-filter");
-      renderGalleryGrid(category);
-    });
-  });
 }
 
 /* ==========================================================================

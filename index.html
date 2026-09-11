@@ -187,6 +187,22 @@
           <p class="section-desc">
             独自の視点と卓越した熱制御によって生まれた、本展示を代表するハイライト作品をご覧ください。
           </p>
+
+          <!-- Total Kanmei (Likes) Counter Badge -->
+          <div class="total-counter-banner">
+            <div class="total-counter-pill">
+              <svg class="like-fan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 21L3.5 9.5C5.8 7 8.8 5.5 12 5.5C15.2 5.5 18.2 7 20.5 9.5L12 21Z" />
+                <path d="M12 21L7.5 7.5" />
+                <path d="M12 21L12 5.5" />
+                <path d="M12 21L16.5 7.5" />
+              </svg>
+              <span class="total-counter-label">展示作品 総感銘数</span>
+              <span class="total-counter-value total-likes-counter">0</span>
+              <span class="total-counter-unit">讃</span>
+            </div>
+            <span class="total-counter-desc">※ 各作品の扇印（感銘ボタン）を押して賛辞を贈ることができます</span>
+          </div>
         </div>
 
         <div class="featured-slider-wrap">
@@ -223,12 +239,13 @@
           </p>
         </div>
 
-        <!-- Category Filters -->
-        <div class="gallery-filter-wrap">
-          <button class="filter-btn active" data-filter="all">全作品（11点）</button>
-          <button class="filter-btn" data-filter="abstract">抽象・造形</button>
-          <button class="filter-btn" data-filter="figurative">具象・食文化・生物</button>
-          <button class="filter-btn" data-filter="accessory">身飾・装飾</button>
+        <!-- Gallery Counter Bar (No Category Filters) -->
+        <div class="gallery-toolbar-row gallery-toolbar-centered">
+          <div class="gallery-counter-tag">
+            <span class="tag-label">全11作品 累計感銘</span>
+            <span class="tag-val total-likes-counter">0</span>
+            <span class="tag-unit">讃</span>
+          </div>
         </div>
 
         <!-- Gallery Grid -->
@@ -484,9 +501,15 @@
               <path d="M12 21L16.5 7.5" />
             </svg>
             <span class="modal-like-label">作品に感銘を贈る</span>
-            <span class="modal-like-count">0</span>
+            <span class="modal-like-count-wrap">
+              <span class="modal-like-count">0</span>
+              <span class="modal-like-unit">讃</span>
+            </span>
           </button>
-          <span class="modal-like-hint">創作者の技と美意識に賞賛を届ける</span>
+          <div class="modal-counter-status">
+            <span class="modal-like-hint">創作者に届いた賛辞</span>
+            <span class="modal-counter-badge"><span class="modal-badge-val">0</span> 讃</span>
+          </div>
         </div>
 
         <div class="modal-nav-row">

@@ -1063,13 +1063,13 @@ button {
 
 /* ==========================================================================
    Japanese Aesthetic "Kanmei / San" (Like / Impression) Button System
-   Motif: 金扇（和扇子）・金箔・落款調の和モダン意匠
+   Motif: 金扇（和扇子）・金箔・落款調の和モダン意匠 ＆ 感銘カウンター
    ========================================================================== */
 .card-like-btn {
   position: absolute;
   top: 0.85rem;
   right: 0.85rem;
-  z-index: 15;
+  z-index: 25;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -1086,6 +1086,8 @@ button {
   color: var(--text-body);
   user-select: none;
   letter-spacing: 0.08em;
+  pointer-events: auto !important;
+  touch-action: manipulation;
 }
 
 .card-like-btn:hover {
@@ -1093,6 +1095,10 @@ button {
   border-color: var(--gold-primary);
   background: #ffffff;
   box-shadow: 0 6px 18px rgba(185, 151, 91, 0.22);
+}
+
+.card-like-btn:active {
+  transform: translateY(0) scale(0.96);
 }
 
 .card-like-btn.liked {
@@ -1109,6 +1115,7 @@ button {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.4;
+  pointer-events: none;
 }
 
 .card-like-btn.liked .like-fan-icon {
@@ -1120,27 +1127,161 @@ button {
 .card-like-label {
   font-size: 0.75rem;
   letter-spacing: 0.1em;
+  pointer-events: none;
 }
 
 .card-like-count {
   font-family: var(--font-en);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--gold-dark);
   margin-left: 2px;
+  pointer-events: none;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.card-like-unit {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  pointer-events: none;
 }
 
 .card-like-btn.liked .card-like-count {
   color: var(--gold-light);
 }
+.card-like-btn.liked .card-like-unit {
+  color: rgba(229, 209, 168, 0.8);
+}
 
-/* Modal Like Button (和風 短冊・落款調) */
+/* Total Likes Counter Banner (#featured) */
+.total-counter-banner {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.total-counter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #ffffff;
+  border: 1px solid var(--gold-primary);
+  padding: 0.55rem 1.6rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 18px rgba(185, 151, 91, 0.15);
+  transition: transform 0.3s var(--ease-elegant), box-shadow 0.3s ease;
+}
+
+.total-counter-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(185, 151, 91, 0.22);
+}
+
+.total-counter-label {
+  font-family: var(--font-serif);
+  font-size: 0.86rem;
+  color: var(--text-main);
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+.total-counter-value {
+  font-family: var(--font-en);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.total-counter-value.bump {
+  transform: scale(1.3);
+  color: var(--gold-primary);
+}
+
+.total-counter-unit {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  color: var(--gold-dark);
+  font-weight: 500;
+}
+
+.total-counter-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+/* Gallery Toolbar & Counter Bar (#gallery) */
+.gallery-toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(185, 151, 91, 0.2);
+}
+
+.gallery-toolbar-centered {
+  justify-content: center;
+  border-bottom: none;
+  margin-bottom: 2.5rem;
+}
+
+.card-category-badge,
+.gallery-filter-wrap {
+  display: none !important;
+}
+
+.gallery-counter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-cream);
+  border: 1px solid var(--gold-border);
+  padding: 0.45rem 1.1rem;
+  border-radius: 2px;
+  font-family: var(--font-serif);
+  font-size: 0.84rem;
+}
+
+.gallery-counter-tag .tag-label {
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.gallery-counter-tag .tag-val {
+  font-family: var(--font-en);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  transition: transform 0.3s ease;
+}
+
+.gallery-counter-tag .tag-val.bump {
+  transform: scale(1.25);
+  color: var(--gold-primary);
+}
+
+.gallery-counter-tag .tag-unit {
+  font-size: 0.8rem;
+  color: var(--text-body);
+}
+
+/* Modal Like Button & Counter (和風 短冊・落款調) */
 .modal-like-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 1.2rem;
   margin-bottom: 2.2rem;
-  padding: 1rem 1.4rem;
+  padding: 1.1rem 1.5rem;
   background: var(--bg-cream);
   border: 1px solid rgba(185, 151, 91, 0.25);
   border-left: 3px solid var(--gold-primary);
@@ -1149,7 +1290,7 @@ button {
 .modal-like-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
   background: #ffffff;
   border: 1px solid var(--gold-primary);
   padding: 0.55rem 1.4rem;
@@ -1170,6 +1311,10 @@ button {
   transform: translateY(-2px);
 }
 
+.modal-like-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
 .modal-like-btn.liked {
   background: var(--bg-dark);
   color: var(--gold-light);
@@ -1182,11 +1327,45 @@ button {
   animation: fanWave 0.5s var(--ease-elegant);
 }
 
+.modal-like-count-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.modal-like-unit {
+  font-family: var(--font-serif);
+  font-size: 0.76rem;
+  font-weight: normal;
+}
+
+.modal-counter-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
 .modal-like-hint {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
   letter-spacing: 0.08em;
-  line-height: 1.5;
+}
+
+.modal-counter-badge {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.modal-badge-val {
+  font-family: var(--font-en);
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 @keyframes fanWave {
@@ -1200,12 +1379,12 @@ button {
 .like-particle {
   position: absolute;
   pointer-events: none;
-  width: 7px;
-  height: 7px;
-  background: linear-gradient(135deg, #e5d1a8 0%, #b9975b 100%);
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #f3e6c8 0%, #d4b478 50%, #9e7d3b 100%);
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* 菱形・金箔片 */
-  animation: goldLeafDrift 0.75s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  z-index: 999;
+  animation: goldLeafDrift 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  z-index: 9999;
 }
 
 @keyframes goldLeafDrift {
@@ -1213,9 +1392,13 @@ button {
     opacity: 1;
     transform: translate(0, 0) scale(1) rotate(0deg);
   }
+  50% {
+    opacity: 0.9;
+    transform: translate(calc(var(--dx) * 0.6), calc(var(--dy) * 0.6)) scale(1.2) rotate(90deg);
+  }
   100% {
     opacity: 0;
-    transform: translate(var(--dx), var(--dy)) scale(0.3) rotate(180deg);
+    transform: translate(var(--dx), var(--dy)) scale(0.2) rotate(220deg);
   }
 }
 
