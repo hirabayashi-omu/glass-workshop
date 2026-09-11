@@ -161,204 +161,6 @@ const SCENERY_DATA = [
   { id: 6, title: "安全ガイダンス風景（安全事項の徹底）", image: "assets/images/scenery/scenery_6.jpeg" }
 ];
 
-/* ==========================================================================
-   Like / Heart System (LocalStorage Persistence & Sparkle Animation)
-   ========================================================================== */
-const LikeManager = {
-  STORAGE_KEY_LIKES: "glass_workshop_likes_v5",
-  STORAGE_KEY_USER: "glass_workshop_user_liked_v5",
-
-  // Counter Reset: All items initialized to 0
-  defaultLikes: {
-    1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0
-  },
-
-  getLikesData() {
-    try {
-      // Clear legacy storage keys if present
-      ["glass_workshop_likes", "glass_workshop_likes_v2", "glass_workshop_likes_v3", "glass_workshop_likes_v4"].forEach(k => {
-        localStorage.removeItem(k);
-      });
-      ["glass_workshop_user_liked", "glass_workshop_user_liked_v2", "glass_workshop_user_liked_v3", "glass_workshop_user_liked_v4"].forEach(k => {
-        localStorage.removeItem(k);
-      });
-
-      const saved = localStorage.getItem(this.STORAGE_KEY_LIKES);
-      return saved ? JSON.parse(saved) : { ...this.defaultLikes };
-    } catch (e) {
-      return { ...this.defaultLikes };
-    }
-  },
-
-  getUserLikes() {
-    try {
-      const saved = localStorage.getItem(this.STORAGE_KEY_USER);
-      return saved ? JSON.parse(saved) : [];
-    } catch (e) {
-      return [];
-    }
-  },
-
-  getLikes(id) {
-    const data = this.getLikesData();
-    return data[id] !== undefined ? data[id] : (this.defaultLikes[id] || 0);
-  },
-
-  getTotalLikes() {
-    const data = this.getLikesData();
-    return Object.values(data).reduce((acc, curr) => acc + Number(curr || 0), 0);
-  },
-
-  isLiked(id) {
-    const userLikes = this.getUserLikes();
-    return userLikes.includes(id);
-  },
-
-  toggleLike(id, triggerElement = null) {
-    const likesData = this.getLikesData();
-    let userLikes = this.getUserLikes();
-    let isNowLiked = false;
-
-    if (userLikes.includes(id)) {
-      userLikes = userLikes.filter(itemId => itemId !== id);
-      likesData[id] = Math.max(0, (likesData[id] || 1) - 1);
-      isNowLiked = false;
-    } else {
-      userLikes.push(id);
-      likesData[id] = (likesData[id] || 0) + 1;
-      isNowLiked = true;
-      if (triggerElement) {
-        this.createParticles(triggerElement);
-      }
-    }
-
-    try {
-      localStorage.setItem(this.STORAGE_KEY_LIKES, JSON.stringify(likesData));
-      localStorage.setItem(this.STORAGE_KEY_USER, JSON.stringify(userLikes));
-    } catch (e) {
-      console.warn("localStorage not accessible", e);
-    }
-
-    this.updateAllUI(id);
-    return isNowLiked;
-  },
-
-  createParticles(element) {
-    const rect = element.getBoundingClientRect();
-    const count = 9;
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement("div");
-      p.className = "like-particle";
-      const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5);
-      const distance = 30 + Math.random() * 35;
-      const dx = Math.cos(angle) * distance;
-      const dy = Math.sin(angle) * distance;
-      p.style.setProperty("--dx", `${dx}px`);
-      p.style.setProperty("--dy", `${dy}px`);
-      p.style.left = `${rect.left + rect.width / 2 + window.scrollX}px`;
-      p.style.top = `${rect.top + rect.height / 2 + window.scrollY}px`;
-      document.body.appendChild(p);
-      setTimeout(() => p.remove(), 800);
-    }
-  },
-
-  updateAllUI(id = null) {
-    // If id provided, update specific artwork UI
-    if (id !== null) {
-      const count = this.getLikes(id);
-      const isLiked = this.isLiked(id);
-
-      // Update gallery and carousel like buttons across ALL slides (including cloned ones)
-      document.querySelectorAll(`.card-like-btn[data-id="${id}"]`).forEach(btn => {
-        btn.classList.toggle("liked", isLiked);
-        const countSpan = btn.querySelector(".card-like-count");
-        if (countSpan) countSpan.textContent = count;
-        const labelSpan = btn.querySelector(".card-like-label");
-        if (labelSpan) labelSpan.textContent = isLiked ? "感銘済" : "感銘";
-      });
-
-      // Update modal if currently opened
-      if (typeof currentModalId !== "undefined" && currentModalId === id) {
-        const modalBtn = document.querySelector(".modal-like-btn");
-        if (modalBtn) {
-          modalBtn.classList.toggle("liked", isLiked);
-          const modalCount = modalBtn.querySelector(".modal-like-count");
-          if (modalCount) modalCount.textContent = count;
-          const modalLabel = modalBtn.querySelector(".modal-like-label");
-          if (modalLabel) modalLabel.textContent = isLiked ? "感銘を贈りました" : "作品に感銘を贈る";
-        }
-      }
-    }
-
-    // Always update total counters across the page
-    const totalCount = this.getTotalLikes();
-    document.querySelectorAll(".total-likes-counter").forEach(counterEl => {
-      counterEl.textContent = totalCount;
-      counterEl.classList.remove("bump");
-      void counterEl.offsetWidth; // Trigger reflow for re-animating
-      counterEl.classList.add("bump");
-      setTimeout(() => counterEl.classList.remove("bump"), 350);
-    });
-  },
-
-  initGlobalListeners() {
-    // 1. Capture and stop pointer/touch events on like buttons to prevent Swiper from intercepting as slide swipe
-    const stopSwiperInterception = (e) => {
-      if (e.target.closest(".card-like-btn") || e.target.closest(".modal-like-btn")) {
-        e.stopPropagation();
-      }
-    };
-
-    ["pointerdown", "mousedown", "touchstart"].forEach(evt => {
-      document.addEventListener(evt, stopSwiperInterception, { capture: true, passive: true });
-    });
-
-    // 2. Global Event Delegation for Clicks (Works seamlessly on cloned slides & dynamic grids)
-    document.addEventListener("click", (e) => {
-      // Check if clicked inside card-like-btn
-      const cardBtn = e.target.closest(".card-like-btn");
-      if (cardBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        const id = parseInt(cardBtn.getAttribute("data-id"), 10);
-        if (!isNaN(id)) {
-          this.toggleLike(id, cardBtn);
-        }
-        return;
-      }
-
-      // Check if clicked inside modal-like-btn
-      const modalBtn = e.target.closest(".modal-like-btn");
-      if (modalBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (typeof currentModalId !== "undefined" && currentModalId) {
-          this.toggleLike(currentModalId, modalBtn);
-        }
-        return;
-      }
-
-      // Check if clicked on featured card to open modal
-      const featuredCard = e.target.closest(".featured-card");
-      if (featuredCard && !e.target.closest(".card-like-btn")) {
-        const id = parseInt(featuredCard.getAttribute("data-id"), 10);
-        if (!isNaN(id)) openModal(id);
-        return;
-      }
-
-      // Check if clicked on gallery item to open modal
-      const galleryItem = e.target.closest(".gallery-item");
-      if (galleryItem && !e.target.closest(".card-like-btn")) {
-        const id = parseInt(galleryItem.getAttribute("data-id"), 10);
-        if (!isNaN(id)) openModal(id);
-        return;
-      }
-    });
-
-    // Initial total count render
-    this.updateAllUI();
-  }
-};
 
 document.addEventListener("DOMContentLoaded", () => {
   initHeaderScroll();
@@ -371,9 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initScenerySwiper();
   initModal();
   initGsapAnimations();
-  
-  // Initialize Global Like & Counter System
-  LikeManager.initGlobalListeners();
 });
 
 /* ==========================================================================
@@ -441,17 +240,6 @@ function renderFeaturedSwiper() {
   wrapper.innerHTML = featuredItems.map(item => `
     <div class="swiper-slide featured-card" data-id="${item.id}">
       <div class="featured-card-img-wrap">
-        <button class="card-like-btn ${LikeManager.isLiked(item.id) ? 'liked' : ''}" data-id="${item.id}" aria-label="感銘を贈る">
-          <svg class="like-fan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 21L3.5 9.5C5.8 7 8.8 5.5 12 5.5C15.2 5.5 18.2 7 20.5 9.5L12 21Z" />
-            <path d="M12 21L7.5 7.5" />
-            <path d="M12 21L12 5.5" />
-            <path d="M12 21L16.5 7.5" />
-          </svg>
-          <span class="card-like-label">${LikeManager.isLiked(item.id) ? '感銘済' : '感銘'}</span>
-          <span class="card-like-count">${LikeManager.getLikes(item.id)}</span>
-          <span class="card-like-unit">讃</span>
-        </button>
         <img src="${item.image}" alt="${item.title}" class="featured-card-img" loading="lazy">
       </div>
       <div class="featured-card-body">
@@ -516,17 +304,6 @@ function renderGalleryGrid() {
   grid.innerHTML = ARTWORK_DATA.map(item => `
     <article class="gallery-item" data-id="${item.id}">
       <div class="gallery-img-container">
-        <button class="card-like-btn ${LikeManager.isLiked(item.id) ? 'liked' : ''}" data-id="${item.id}" aria-label="感銘を贈る">
-          <svg class="like-fan-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 21L3.5 9.5C5.8 7 8.8 5.5 12 5.5C15.2 5.5 18.2 7 20.5 9.5L12 21Z" />
-            <path d="M12 21L7.5 7.5" />
-            <path d="M12 21L12 5.5" />
-            <path d="M12 21L16.5 7.5" />
-          </svg>
-          <span class="card-like-label">${LikeManager.isLiked(item.id) ? '感銘済' : '感銘'}</span>
-          <span class="card-like-count">${LikeManager.getLikes(item.id)}</span>
-          <span class="card-like-unit">讃</span>
-        </button>
         <img src="${item.image}" alt="${item.title}" class="gallery-img" loading="lazy">
         <div class="gallery-img-overlay">
           <span class="overlay-view-btn">
@@ -662,12 +439,21 @@ function initModal() {
     nextBtn.addEventListener("click", () => navigateModal(1));
   }
 
-  const modalLikeBtn = modal.querySelector(".modal-like-btn");
-  if (modalLikeBtn) {
-    modalLikeBtn.addEventListener("click", () => {
-      LikeManager.toggleLike(currentModalId, modalLikeBtn);
-    });
-  }
+  // Delegate click for featured cards & gallery items to open modal
+  document.addEventListener("click", (e) => {
+    const featuredCard = e.target.closest(".featured-card");
+    if (featuredCard) {
+      const id = parseInt(featuredCard.getAttribute("data-id"), 10);
+      if (!isNaN(id)) openModal(id);
+      return;
+    }
+    const galleryItem = e.target.closest(".gallery-item");
+    if (galleryItem) {
+      const id = parseInt(galleryItem.getAttribute("data-id"), 10);
+      if (!isNaN(id)) openModal(id);
+      return;
+    }
+  });
 }
 
 function openModal(id) {
@@ -692,18 +478,6 @@ function openModal(id) {
   theme.textContent = item.theme;
   comment.textContent = item.comment;
   if (count) count.textContent = `${item.chars}文字`;
-
-  // Update modal like button state
-  const isLiked = LikeManager.isLiked(id);
-  const likesCount = LikeManager.getLikes(id);
-  const modalLikeBtn = modal.querySelector(".modal-like-btn");
-  if (modalLikeBtn) {
-    modalLikeBtn.classList.toggle("liked", isLiked);
-    const countSpan = modalLikeBtn.querySelector(".modal-like-count");
-    if (countSpan) countSpan.textContent = likesCount;
-    const labelSpan = modalLikeBtn.querySelector(".modal-like-label");
-    if (labelSpan) labelSpan.textContent = isLiked ? "感銘を贈りました" : "作品に感銘を贈る";
-  }
 
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
