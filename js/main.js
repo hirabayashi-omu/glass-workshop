@@ -148,6 +148,84 @@ const ARTWORK_DATA = [
     chars: 91,
     image: "assets/images/artworks/artwork_11.jpg",
     featured: true
+  },
+  {
+    id: 12,
+    brand: "OV (Ocean View)",
+    title: "Jellyfish",
+    subtitle: "たゆたう透明の触手美",
+    theme: "海の生物",
+    category: "figurative",
+    categoryLabel: "具象・生物",
+    comment: "海中を漂うクラゲの姿を着想に、丸みを帯びた傘と繊細な触手をガラスで表現しました。太さの異なる触手の流麗な広がりを一本ずつ丁寧に整え、水中にたゆたう生命の優美な浮遊感を宿しています。",
+    chars: 90,
+    image: "assets/images/artworks/artwork_12.jpg",
+    featured: false
+  },
+  {
+    id: 13,
+    brand: "Some Beauty",
+    title: "一輪の花",
+    subtitle: "同心円に咲く三色の光彩",
+    theme: "花・色彩",
+    category: "accessory",
+    categoryLabel: "身飾・装飾",
+    comment: "心に浮かんだ一輪の花を着想に、幾重にも連なる鮮やかな色彩をガラスに込めました。中心の黄から赤、青へと広がる輪の重なりが美しく整うよう火炎を繊細に調整し、凛とした可憐な調和を咲かせています。",
+    chars: 94,
+    image: "assets/images/artworks/artwork_13.jpg",
+    featured: false
+  },
+  {
+    id: 14,
+    brand: "fleur de verre（フルール・ド・ヴェール）",
+    title: "ブルーフラワー",
+    subtitle: "揺らめく花弁の幻想美",
+    theme: "幻想的な花",
+    category: "accessory",
+    categoryLabel: "身飾・装飾",
+    comment: "透明ガラスの先端に鮮やかな青を重ね、清澄な青のグラデーションを持つ花弁を表現しました。ヘラとピンセットで丹念にガラスを引き伸ばして繊細なうねりを与え、幻想的に咲き誇る花の姿を宿しています。",
+    chars: 94,
+    image: "assets/images/artworks/artwork_14.jpg",
+    featured: true
+  },
+  {
+    id: 15,
+    brand: "Lumière Mare（ルミエール・マーレ）",
+    title: "イルカのきらめきチャーム",
+    subtitle: "光と海を閉じ込めた宝飾",
+    theme: "夏・海洋",
+    category: "accessory",
+    categoryLabel: "身飾・装飾",
+    comment: "主役のイルカに加え、貝殻や気泡をイメージしたとんぼ玉がきらめくチャームです。『光と海』の名が示す通り、澄んだガラスの中に夏のまばゆい輝きを閉じ込め、涼やかで華やかな情緒を演出しています。",
+    chars: 93,
+    image: "assets/images/artworks/artwork_15.jpg",
+    featured: true
+  },
+  {
+    id: 16,
+    brand: "piyo glass",
+    title: "ひよこの宝物",
+    subtitle: "素朴で愛らしき生命の温もり",
+    theme: "愛玩・ひよこ",
+    category: "figurative",
+    categoryLabel: "具象・生物",
+    comment: "愛らしいひよこの温もりを表現するため、柔らかな色調のガラスを吟味して成形しました。素朴な可愛らしさを大切に、目などの表情パーツをシンプルかつ的確に配置し、心和む佇まいに仕上げています。",
+    chars: 92,
+    image: "assets/images/artworks/artwork_16.jpg",
+    featured: false
+  },
+  {
+    id: 17,
+    brand: "BerryGlass",
+    title: "ブルーベリー",
+    subtitle: "実りの深藍と小粋なフォルム",
+    theme: "果実・自然",
+    category: "figurative",
+    categoryLabel: "具象・自然",
+    comment: "深みのある濃紺と紫のトーンを緻密に調合し、熟したブルーベリーの果実感を表現しました。火炎でガラスを絶妙に丸め、実の独特なくぼみや愛らしいフォルムを捉えて瑞々しい自然の表情を宿しています。",
+    chars: 93,
+    image: "assets/images/artworks/artwork_17.jpg",
+    featured: false
   }
 ];
 
@@ -295,7 +373,7 @@ function initFeaturedSwiper() {
 }
 
 /* ==========================================================================
-   Gallery Exhibition Grid (All 11 Artworks)
+   Gallery Exhibition Grid (All 17 Artworks)
    ========================================================================== */
 function renderGalleryGrid() {
   const grid = document.querySelector(".gallery-grid");
